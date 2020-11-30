@@ -1,0 +1,16 @@
+package examenunidad3;
+
+public class Nodo {
+	 String cliente;
+	    int i;
+	    boolean vip;
+	    Nodo siguiente;
+	    
+	    public Nodo (String dato, boolean num,int i )
+	    {
+	        this.cliente = dato;
+	        this.siguiente = null;
+	        this.vip = num;
+	        this.i = i;
+	    }
+}
