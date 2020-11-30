@@ -1,0 +1,122 @@
+package examenunidad3;
+
+public class Cola {
+	 Nodo IComun, FComun;
+	    Nodo IVip, FVip;
+	    Nodo arre[];
+	    
+	    public Cola(){
+	        this.IVip = null;
+	        this.FVip = null;
+	        this.IComun= null;
+	        this.FComun= null;
+	        this.arre = new Nodo [3];
+	    }
+	     
+	    private boolean EstavaciaVip(){
+	        return IVip==null;
+	    }
+	    
+	    private boolean EstaVaciaComun(){
+	        return IComun ==null;
+	    }
+	    
+	    public boolean ColaVacia(){
+	        return EstavaciaVip() && EstaVaciaComun();
+	    }
+	    
+	     private void AgregarVip (String dato,boolean vip, int i){
+	        Nodo nodo= new Nodo(dato, vip, i);
+	        if(EstavaciaVip()){
+	            IVip = nodo;
+	        }else{
+	            FVip.siguiente = nodo;
+	        }
+	        FVip = nodo;
+	    }
+	     
+	     private void AgregarComun(String dato,boolean comun,int i){
+	        Nodo nodo= new Nodo(dato, comun, i);
+	        if (EstaVaciaComun()){
+	            IComun = nodo;
+	        }else{
+	            FComun.siguiente = nodo;
+	        }
+	        FComun = nodo;      
+	     }
+	     
+	      public void GeneraCliente (String dato,boolean vip,int i){
+	         if (vip){
+	             AgregarVip(dato, vip, i);
+	         } else{
+	             AgregarComun(dato, vip, i);
+	         }
+	     }
+	     
+	      private Nodo EliminarVip(){
+	          Nodo cont = IVip;
+	          IVip = IVip.siguiente;
+	          return cont;
+	      }
+	      
+	      private Nodo EliminarComun(){
+	          Nodo cont = IComun;
+	          IComun= IComun.siguiente;
+	          return cont;
+	      }
+	      
+	     public void PasarVentanilla(){
+	         for (int i=0; i<arre.length;i++){
+	             if(!EstavaciaVip()){
+	                 arre[i]=EliminarVip();
+	                  System.out.println("["+arre[i].cliente+arre[i].i+"]");
+	                  arre[i]=null;
+	             } else{
+	                 break;
+	             }
+	            if(i<arre.length){
+	                for (i = 0; i <arre.length;i++){
+	                    if(!EstaVaciaComun()){
+	                        arre[i] = EliminarComun();
+	                         System.out.println("["+arre[i].cliente+arre[i].i+"]");
+	                    } else{
+	                        break;
+	                    }
+	                }
+	            } 
+	         }
+	     }
+	     public void MostrarVip (){
+	         Nodo aux1 = IVip;
+	         System.out.println("Clientes VIP: ");
+	     while (aux1!=null){
+	         System.out.print("["+ aux1.cliente + aux1.i+"]");
+	         aux1 = aux1.siguiente;
+	     }
+	     }
+	   
+	     public void MostrarComun(){
+	         Nodo aux2 = IComun;
+	         System.out.println("\nClientes Coumnes: ");
+	         while(aux2!=null){
+	             System.out.print("["+aux2.cliente+aux2.i+"]");
+	             aux2= aux2.siguiente;
+	         }
+	     }
+	     
+	     public void TerminarVentanilla(int i){
+	         if (i>=0 && i< arre.length){
+	              if(!EstavaciaVip()){
+	                 arre[i]=EliminarVip();
+	                  System.out.println("["+arre[i].cliente+arre[i].i+"]");
+	                  arre[i]=null;
+	     } else if(!EstaVaciaComun()){
+	           arre[i]=EliminarComun();
+	                  System.out.println("["+arre[i].cliente+arre[i].i+"]");
+	                  arre[i]=null;
+	     }
+	    
+	     
+	}
+	     }
+}
