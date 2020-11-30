@@ -1,0 +1,86 @@
+package examenunidad3;
+
+import java.util.Scanner;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		Cola cola=new Cola();
+		int i=0;
+		int opcion;
+		boolean continuar = true;
+
+		Scanner leer=new Scanner(System.in);
+
+		while (continuar)
+		{
+		    System.out.println("\n---DISPONIBLES---");
+		    System.out.println("1.- Nuevo Cliente");
+		    System.out.println("2.- Pasar a ventanilla");
+		    System.out.println("3.- Mostrar Colas");
+		    System.out.println("4.- Terminar ventanilla");
+		    System.out.println("5.- Salir");
+		    opcion=leer.nextInt();
+		    
+		    switch (opcion)
+		    {
+		        case 1:
+		           
+		             boolean Vip = Vip();
+		             
+		             if (Vip){
+		                 System.out.print("Cliente "+i+" VIP ");
+		                 i++;
+		                 cola.GeneraCliente("VIP", Vip, i);
+		             }else {
+		                 i++;
+		                 System.out.print("Cliente "+ i +" Comun ");
+		                 cola.GeneraCliente("Comun", Vip, i);
+		             }
+		           
+		            break;
+		            
+		        case 2:
+		            if (!cola.ColaVacia()){
+		                cola.PasarVentanilla();
+		            } else{
+		                System.out.println("las cosas estan vacias");
+		            }
+		           
+		            break;
+		            
+		        case 3:
+		             if(!cola.ColaVacia()){
+		                 cola.MostrarVip();
+		                 cola.MostrarComun();
+		             }else{
+		                 System.out.println("La cola esta vacia");
+		             }
+		             break;
+		        
+		        case 4:
+		           if (!cola.ColaVacia()){
+		               int num= (int)(Math.random()*2+0);
+		               cola.TerminarVentanilla(num);
+		           }else{
+		                 System.out.println("La cola esta vacia");
+		             }
+		            break;
+		            
+		        case 5:
+		             System.out.println("Salir");
+		            continuar=true;
+		            break;
+		            
+		    }
+		}
+
+
+		}
+		public static boolean Vip(){
+		  int num = (int)(Math.random()*2+0);
+		  return num==0;
+	}
+
+}
